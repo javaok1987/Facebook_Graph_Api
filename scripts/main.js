@@ -48,7 +48,7 @@
                     map: mapManager.var.map,
                     draggable: true,
                     animation: google.maps.Animation.DROP,
-                    icon: '//dl.dropboxusercontent.com/u/26467764/demo/Facebook_Graph_Api/images/spiderman.png'
+                    icon: './images/spiderman.png'
                 });
 
                 google.maps.event.addListener(mapManager.var.userMarker, 'dragend', function() {
@@ -130,7 +130,7 @@
                 var _marker = new google.maps.Marker({
                     position: position,
                     map: mapManager.var.map,
-                    icon: '//dl.dropboxusercontent.com/u/26467764/demo/Facebook_Graph_Api/images/food.png',
+                    icon: './images/food.png',
                     title: name
                 });
                 mapManager.var.markerAry.push(_marker);
