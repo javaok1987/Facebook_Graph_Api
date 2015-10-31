@@ -138,7 +138,7 @@
                     if (mapManager.var.infowindow) {
                         mapManager.var.infowindow.close();
                     }
-                    mapManager.var.infowindow.setContent('<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2F' + pageId + '&amp;width&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false&amp;appId=710093095712867" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:258px;" allowTransparency="true"></iframe>');
+                    mapManager.var.infowindow.setContent(name);
                     mapManager.var.infowindow.open(mapManager.var.map, this);
                 });
             },
@@ -173,7 +173,7 @@
                         'method': 'GET',
                         'format': 'json',
                         'suppress_http_code': 1,
-                        'access_token': '736264053097178|650c1ea58624dd2fc780b1ef4ad40010'
+                        'access_token': '710093095712867|73e4f69cc5932328cc866055b2745b59'
                     },
                     dataType: 'json',
                     method: 'POST',
