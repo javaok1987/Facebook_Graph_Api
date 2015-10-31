@@ -2,8 +2,6 @@
 
 ### Facebook Graph API 實作
 
-<br>
-
 [DEMO](http://javaok1987.github.io/facebook-graph-api-demo/)
 
 Tools
