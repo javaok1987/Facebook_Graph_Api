@@ -10,8 +10,8 @@
     };
 
     var $jQObj = {
-        slider: $("#slider"),
-        queryString: $("#queryString")
+        slider: $('#slider'),
+        queryString: $('#queryString')
     };
 
     mapManager.action = (function() {
@@ -43,16 +43,19 @@
                     center: mapManager.var.initParamCenter
                 };
                 mapManager.var.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-                mapManager.var.infowindow = new google.maps.InfoWindow();
                 mapManager.var.userMarker = new google.maps.Marker({
                     map: mapManager.var.map,
                     draggable: true,
                     animation: google.maps.Animation.DROP,
                     icon: './images/spiderman.png'
                 });
+                mapManager.var.infowindow = new google.maps.InfoWindow({
+                    content: 'Drag me!'
+                  });
+                mapManager.var.infowindow.open(mapManager.var.map, mapManager.var.userMarker);
 
                 google.maps.event.addListener(mapManager.var.userMarker, 'dragend', function() {
-                    var _distance = parseInt($jQObj.slider.slider("option", "value") * 1000);
+                    var _distance = parseInt($jQObj.slider.slider('option', 'value') * 1000);
                     mapManager.var.searchCircle.setCenter(this.getPosition());
                     mapManager.var.searchCircle.setRadius(_distance);
                     geocodePosition(this.getPosition());
@@ -75,17 +78,17 @@
                         min: 1,
                         max: 5,
                         value: 2,
-                        orientation: "horizontal",
-                        range: "min",
+                        orientation: 'horizontal',
+                        range: 'min',
                         slide: function(event, ui) {
                             var _distance = parseInt(ui.value);
-                            $("#distance").text(_distance);
+                            $('#distance').text(_distance);
                             mapManager.var.searchCircle.setRadius(_distance * 1000);
                         },
                         stop: function(event, ui) {
                             fb.search.getResult();
                         }
-                    }).addSliderSegments($jQObj.slider.slider("option").max);
+                    }).addSliderSegments($jQObj.slider.slider('option').max);
                 }
             },
             geolocation: function() { //定位.
@@ -93,15 +96,15 @@
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(showPosition, errorCallback);
                 } else {
-                    alert("地址定位錯誤");
+                    alert('地址定位錯誤');
                 }
 
                 function errorCallback(error) {
                     var errorTypes = {
-                        0: "不明原因錯誤,將使用預設位置",
-                        1: "使用者拒絕提供位置資訊,將使用預設位置",
-                        2: "無法取得位置資訊,將使用預設位置",
-                        3: "位置查詢逾時,將使用預設位置"
+                        0: '不明原因錯誤,將使用預設位置',
+                        1: '使用者拒絕提供位置資訊,將使用預設位置',
+                        2: '無法取得位置資訊,將使用預設位置',
+                        3: '位置查詢逾時,將使用預設位置'
                     };
                     var fakePosition = {
                         coords: { // 台北轉運站.
@@ -196,7 +199,7 @@
 
             },
             getResult: function() {
-                var _distance = parseInt($jQObj.slider.slider("option", "value") * 1000);
+                var _distance = parseInt($jQObj.slider.slider('option', 'value') * 1000);
                 mapManager.overlay.clearMarkers();
                 fb.search.place($jQObj.queryString.val(), _distance);
             }
@@ -208,7 +211,7 @@
         mapManager.action.initialize();
         mapManager.action.geolocation();
 
-        $("#hungry").click(function() {
+        $('#hungry').click(function() {
             fb.search.getResult();
         });
 
